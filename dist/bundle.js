@@ -18341,29 +18341,30 @@ var Skin = function (_Component) {
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
+                    _react2.default.createElement("img", { src: 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(this.props.avatar) }),
                     _react2.default.createElement(
-                        "div",
+                        "h1",
                         null,
-                        _react2.default.createElement("img", { src: 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(this.props.avatar) }),
-                        _react2.default.createElement(
-                            "h1",
-                            null,
-                            this.props.name
-                        )
+                        this.props.name
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { "class": "buttons" },
+                    _react2.default.createElement(
+                        "button",
+                        null,
+                        "UPLOAD"
                     ),
                     _react2.default.createElement(
-                        "div",
+                        "button",
                         null,
-                        _react2.default.createElement(
-                            "button",
-                            null,
-                            "UPLOAD TO BONK.IO"
-                        ),
-                        _react2.default.createElement(
-                            "button",
-                            null,
-                            "A BUTTON THAT DOES A COOL THING"
-                        )
+                        "EDIT"
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        null,
+                        "SHARE"
                     )
                 )
             );

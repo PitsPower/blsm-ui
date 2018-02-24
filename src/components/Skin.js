@@ -5,14 +5,13 @@ export default class Skin extends Component {
         return (
             <div className="skin">
                 <div className="container">
-                    <div>
-                        <img src={'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode='+encodeURIComponent(this.props.avatar)} />
-                        <h1>{this.props.name}</h1>
-                    </div>
-                    <div>
-                        <button>UPLOAD TO BONK.IO</button>
-                        <button>A BUTTON THAT DOES A COOL THING</button>
-                    </div>
+                    <img src={'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode='+encodeURIComponent(this.props.avatar)} />
+                    <h1>{this.props.name}</h1>
+                </div>
+                <div class="buttons">
+                    <button>UPLOAD</button>
+                    <button>EDIT</button>
+                    <button>SHARE</button>
                 </div>
             </div>
         );
