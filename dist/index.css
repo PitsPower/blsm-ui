@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+* {
+    cursor: default;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: #111;
+    margin: 20px;
+}
+h1 {
+    color: #111;
+    font-family: 'VT323';
+    font-weight: normal;
+}
+button {
+    color: #fff;
+    background: #111;
+    font-family: 'VT323';
+    font-size: 22px;
+    padding: 7px 15px;
+    margin: 15px;
+    border: none;
+    display: block;
+}
+button:focus {
+    outline: none;
+}
+
+.skins {
+    margin: 0 75px;
+}
+
+.skin {
+    background: #fb016e;
+    overflow: hidden;
+    white-space: nowrap;
+    float: left;
+    clear: left;
+    padding: 15px 15px;
+    margin: 15px 0;
+    width: 225px;
+    height: 165px;
+    display: inline-block;
+    transition: width .4s, height .4s;
+}
+
+.skin .container {
+    height: 100%;
+    position: relative;
+    top: 0;
+    transition: top .4s;
+}
+
+.skin h1 {
+    font-size: 37px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    text-align: center;
+    transition: font-size .4s;
+}
+.skin img {
+    margin: 0 auto;
+    margin-bottom: 7px;
+    width: 112px;
+    display: block;
+    position: relative;
+    top: 0;
+    transition: width .4s, top .4s;
+}
+.skin button {
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+.skin:hover {
+    width: 375px;
+    height: 300px;
+}
+.skin:hover h1 {
+    font-size: 30px;
+}
+.skin:hover img {
+    width: 70px;
+}
+.skin:hover button {
+    opacity: 1;
+}
