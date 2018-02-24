@@ -8,7 +8,7 @@ export default class Skin extends Component {
                     <img src={'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode='+encodeURIComponent(this.props.avatar)} />
                     <h1>{this.props.name}</h1>
                 </div>
-                <div class="buttons">
+                <div className="buttons">
                     <button>UPLOAD</button>
                     <button>EDIT</button>
                     <button>SHARE</button>

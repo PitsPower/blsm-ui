@@ -18350,7 +18350,7 @@ var Skin = function (_Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { "class": "buttons" },
+                    { className: "buttons" },
                     _react2.default.createElement(
                         "button",
                         null,
