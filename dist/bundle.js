@@ -18276,6 +18276,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -18286,17 +18288,64 @@ var _Skin2 = _interopRequireDefault(_Skin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var skins = __webpack_require__(29).map(function (skin, i) {
-    return _react2.default.createElement(_Skin2.default, _extends({}, skin, { key: i }));
-});
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.default = function () {
-    return _react2.default.createElement(
-        'div',
-        { className: 'skins' },
-        skins
-    );
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MySkins = function (_Component) {
+    _inherits(MySkins, _Component);
+
+    function MySkins(props) {
+        _classCallCheck(this, MySkins);
+
+        var _this = _possibleConstructorReturn(this, (MySkins.__proto__ || Object.getPrototypeOf(MySkins)).call(this, props));
+
+        _this.state = {
+            using: ''
+        };
+
+        _this.resetUsedSkin = _this.resetUsedSkin.bind(_this);
+        _this.setUsedSkin = _this.setUsedSkin.bind(_this);
+        return _this;
+    }
+
+    _createClass(MySkins, [{
+        key: 'resetUsedSkin',
+        value: function resetUsedSkin() {
+            this.setState({
+                using: ''
+            });
+        }
+    }, {
+        key: 'setUsedSkin',
+        value: function setUsedSkin(skinCode) {
+            this.setState({
+                using: skinCode
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var skins = __webpack_require__(29).map(function (skin, i) {
+                return _react2.default.createElement(_Skin2.default, _extends({}, skin, { using: skin.avatar === _this2.state.using, key: i, resetUsedSkin: _this2.resetUsedSkin, setUsedSkin: _this2.setUsedSkin }));
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'skins' },
+                skins
+            );
+        }
+    }]);
+
+    return MySkins;
+}(_react.Component);
+
+exports.default = MySkins;
 
 /***/ }),
 /* 28 */
@@ -18323,25 +18372,94 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var tickSvg = _react2.default.createElement(
+    "svg",
+    { className: "icon tick", version: "1.1", xmlns: "http://www.w3.org/2000/svg", width: "100", height: "100", viewBox: "0 0 100 100" },
+    _react2.default.createElement("circle", { r: "50", cx: "50", cy: "50", fill: "#111" }),
+    _react2.default.createElement(
+        "g",
+        { transform: "translate(-8.13172798366)" },
+        _react2.default.createElement("rect", { id: "check1", x: "35.8578643763", y: "50", width: "10", height: "0", transform: "rotate(-45, 35.8578643763, 50) translate(-5, -2)", fill: "#71d458" }),
+        _react2.default.createElement("rect", { id: "check2", x: "64.1421356237", y: "50", width: "10", height: "0", transform: "rotate(225, 64.1421356237, 50) translate(-5, -25)", fill: "#71d458" })
+    )
+);
+
 var Skin = function (_Component) {
     _inherits(Skin, _Component);
 
-    function Skin() {
+    function Skin(props) {
         _classCallCheck(this, Skin);
 
-        return _possibleConstructorReturn(this, (Skin.__proto__ || Object.getPrototypeOf(Skin)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Skin.__proto__ || Object.getPrototypeOf(Skin)).call(this, props));
+
+        _this.state = {
+            uploadConfirm: false,
+            uploading: false,
+            using: _this.props.using
+        };
+
+        _this.upload = _this.upload.bind(_this);
+        _this.cancelUpload = _this.cancelUpload.bind(_this);
+        return _this;
     }
 
     _createClass(Skin, [{
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            this.setState({
+                using: nextProps.using
+            });
+        }
+    }, {
+        key: "upload",
+        value: function upload() {
+            var _this2 = this;
+
+            if (this.state.uploadConfirm) {
+                this.setState({ uploading: true });
+                this.props.resetUsedSkin();
+
+                setTimeout(function () {
+                    _this2.setState({ uploading: false });
+                    _this2.props.setUsedSkin(_this2.props.avatar);
+                }, 2000);
+            }
+
+            this.setState({
+                uploadConfirm: !this.state.uploadConfirm
+            });
+        }
+    }, {
+        key: "cancelUpload",
+        value: function cancelUpload() {
+            this.setState({
+                uploadConfirm: false
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
+            var upload = this.state.uploadConfirm ? 'SURE?' : 'UPLOAD';
+
+            var icon = null;
+            if (this.state.uploading) {
+                icon = _react2.default.createElement("img", { className: "icon spin", src: "img/loading.svg" });
+            } else if (this.state.using) {
+                icon = tickSvg;
+            }
+
             return _react2.default.createElement(
                 "div",
-                { className: "skin" },
+                { className: "skin", onMouseOut: this.cancelUpload },
                 _react2.default.createElement(
                     "div",
                     { className: "container" },
-                    _react2.default.createElement("img", { src: 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(this.props.avatar) }),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "image" },
+                        _react2.default.createElement("img", { className: "avatar", src: 'https://bonkleaguebot.herokuapp.com/avatar.svg?skinCode=' + encodeURIComponent(this.props.avatar) }),
+                        icon
+                    ),
                     _react2.default.createElement(
                         "h1",
                         null,
@@ -18353,8 +18471,8 @@ var Skin = function (_Component) {
                     { className: "buttons" },
                     _react2.default.createElement(
                         "button",
-                        null,
-                        "UPLOAD"
+                        { onClick: this.upload, disabled: this.state.uploading || this.state.using },
+                        upload
                     ),
                     _react2.default.createElement(
                         "button",

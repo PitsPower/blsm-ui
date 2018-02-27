@@ -26,6 +26,49 @@ button {
 button:focus {
     outline: none;
 }
+button[disabled] {
+    color: #888;
+    cursor: not-allowed;
+}
+button[disabled]:hover {
+    box-shadow: inset 0 0 #fff !important;
+}
+
+.spin {
+    animation: spin 1s infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#check1 {
+    animation: check1 .2s forwards;
+}
+@keyframes check1 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 27px;
+    }
+}
+#check2 {
+    animation: check2 .2s forwards;
+    animation-delay: .1s;
+}
+@keyframes check2 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 50px;
+    }
+}
 
 .skins {
     margin: 0 75px;
@@ -60,7 +103,7 @@ button:focus {
     left: 0;
     transition: top .4s, left .4s;
 }
-.skin img {
+.skin .image {
     border-radius: 9999px;
     margin: 0 auto;
     margin-bottom: 7px;
@@ -68,6 +111,16 @@ button:focus {
     display: block;
     position: relative;
     top: 0;
+}
+.skin .avatar {
+    width: 100%;
+}
+.skin .icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 .skin .buttons {
     position: absolute;
